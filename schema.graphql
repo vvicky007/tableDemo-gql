@@ -1,0 +1,35 @@
+type Query {
+  job(id: ID!): Job
+  jobs: [Job]
+  company(id: ID!): Company,
+  tableData(start:Int!,end:Int!):[ProviderInfo]
+}
+type Mutation {
+  createJobPost(input: createJob): Job
+}
+type Company {
+  id: ID!
+  name: String
+  description: String
+  jobs: [Job]
+}
+type Job {
+  id: ID!
+  title: String
+  description: String
+  company: Company
+}
+input createJob {
+  title: String
+  description: String
+}
+type ProviderInfo{
+    providerid:String
+    providername:String
+    providergroupid:String
+    providergroup:String
+    providerphone:String
+    level1status:String
+    categoryofclosedcharts:String
+    chartsopen:String
+}
