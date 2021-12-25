@@ -6,5 +6,6 @@ module.exports = {
   companies: store.collection('companies'),
   jobs: store.collection('jobs'),
   users: store.collection('users'),
-  tableData:store.collection('tableData')
+  tableData:store.collection('tableData'),
+  // notesData:store.collection('notesData')
 };

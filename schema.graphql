@@ -3,9 +3,25 @@ type Query {
   jobs: [Job]
   company(id: ID!): Company,
   tableData(start:Int!,end:Int!):[ProviderInfo]
+  notes:[Note]
 }
+type Note {
+  id:String
+  title:String
+  children:[Note]
+  visibility:Boolean
+}
+input NoteinNotes{
+  id:String
+  title:String
+  children:[NoteinNotes]
+  visibility:Boolean
+}
+
+
 type Mutation {
   createJobPost(input: createJob): Job
+  createNotes(input: [NoteinNotes]!):[Note]
 }
 type Company {
   id: ID!

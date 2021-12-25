@@ -1,4 +1,6 @@
 const db = require('./db')
+const fs = require('fs')
+
 const Query = {
   job:(root,{id})=>db.jobs.get(id),
   jobs:()=> db.jobs.list(),
@@ -11,6 +13,18 @@ const Query = {
    else{
      return result.slice(start)
    }
+  },
+  notes:async ()=>{
+    console.log('....')
+    const res = fs.readFileSync('./data/notesData.json','utf-8')
+    console.log('res',res)
+    if(res){
+      const temp =  await JSON.parse(res)
+      const temp2 =  await JSON.parse(temp)
+      console.log('temp2 is',temp2)
+      return temp2;
+    }
+    return []
   }
 }
 const Mutation = {
@@ -22,6 +36,15 @@ const Mutation = {
     
     const id = db.jobs.create({...input,companyId:user.companyId})
     return db.jobs.get(id)
+  },
+  createNotes:async (root,{input})=>{
+    const data = JSON.stringify(input)
+    fs.writeFileSync('./data/notesData.json',JSON.stringify(data),'utf-8')
+    // const res = fs.readFileSync('./data/notesData.json','utf-8')
+    const res = fs.readFileSync('./data/notesData.json')
+    const temp =  JSON.parse(res)
+    const temp2 =  JSON.parse(temp)
+    return temp2;
   }
 }
 const Job = {
