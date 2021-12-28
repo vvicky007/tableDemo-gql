@@ -4,6 +4,11 @@ type Query {
   company(id: ID!): Company,
   tableData(start:Int!,end:Int!):[ProviderInfo]
   notes:[Note]
+  analysed:[analysedNotes]
+}
+type analysedNotes{
+  word:String
+  sentence:String
 }
 type Note {
   id:String

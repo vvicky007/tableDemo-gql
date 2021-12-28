@@ -7,5 +7,7 @@ module.exports = {
   jobs: store.collection('jobs'),
   users: store.collection('users'),
   tableData:store.collection('tableData'),
-  // notesData:store.collection('notesData')
+  // notesData:store.collection('notesData'),
+  sentences:store.collection('sentences'),
+  sentiments:store.collection('sentiments'),
 };

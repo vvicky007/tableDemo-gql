@@ -25,6 +25,18 @@ const Query = {
       return temp2;
     }
     return []
+  },
+  analysed:()=>{
+    const sentimentalWords = db.sentiments.list()
+    const sentences = db.sentences.list()
+    const analysedResult = sentimentalWords.map((sen)=>{
+      const word = sentences.find((x)=>x.id===sen.sentenceId)
+      return {
+        sentence:word.description,
+        word:sen.description
+      }
+    })
+    return analysedResult
   }
 }
 const Mutation = {
